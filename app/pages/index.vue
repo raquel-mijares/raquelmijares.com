@@ -1,0 +1,494 @@
+<script setup lang="ts">
+import { ArrowUpRight, ChevronDown, FileText, Mail } from 'lucide-vue-next'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+import { Separator } from '@/components/ui/separator'
+import { projects } from '~/data/projects'
+import { recommendations } from '~/data/recommendations'
+
+const work = projects.filter(p => p.category !== 'open-source')
+const openSource = projects.filter(p => p.category === 'open-source')
+
+const experience = [
+  { org: 'APMC', role: 'Senior Software Developer', years: '2024—2026' },
+  { org: 'Kettl', role: 'Software Engineer', years: '2023—2024' },
+  { org: 'Tugboat Logic, acquired by OneTrust', role: 'Front End Developer', years: '2021—2023' },
+  { org: 'InceptionU', role: 'Full Stack Development Program', years: '2020—2021' },
+]
+
+const featured = recommendations.slice(0, 3)
+const more = recommendations.slice(3)
+const showMore = ref(false)
+
+const { siteUrl } = useRuntimeConfig().public
+
+useHead({
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': 'Raquel Mijares',
+      'jobTitle': 'Senior Frontend Developer',
+      'url': siteUrl,
+      'image': `${siteUrl}/images/raquel.webp`,
+      'address': { '@type': 'PostalAddress', 'addressLocality': 'Calgary', 'addressRegion': 'AB', 'addressCountry': 'CA' },
+      'sameAs': ['https://www.linkedin.com/in/raquelmjrs/', 'https://github.com/raquel-mijares'],
+      'knowsAbout': ['Vue', 'Nuxt', 'React', 'TypeScript', 'Flutter', 'Web accessibility', 'Consent management', 'Payments'],
+      'alumniOf': 'Universidad Metropolitana',
+    }),
+  }],
+})
+
+const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneTrust)', '')
+</script>
+
+<template>
+  <div>
+    <header class="col hero">
+      <div class="id">
+        <Avatar class="avatar">
+          <AvatarImage src="/images/raquel.webp" alt="Portrait of Raquel Mijares" width="72" height="72" />
+          <AvatarFallback :delay-ms="800">RM</AvatarFallback>
+        </Avatar>
+        <div>
+          <h1>Raquel Mijares</h1>
+          <p class="muted">Senior Frontend Developer, Calgary</p>
+        </div>
+      </div>
+      <p class="headline">
+        I take products from a rough idea to production, and leave the code easier to work in
+        than I found it.
+      </p>
+      <div class="ctas">
+        <Button as="a" href="mailto:raquelmjrs@gmail.com">
+          <Mail aria-hidden="true" />
+          Email me
+        </Button>
+        <Button as="a" variant="outline" href="/raquel-mijares-resume.pdf">
+          <FileText aria-hidden="true" />
+          Résumé
+        </Button>
+        <Button as="a" variant="ghost" href="https://www.linkedin.com/in/raquelmjrs/" rel="noopener">
+          LinkedIn
+          <ArrowUpRight aria-hidden="true" />
+        </Button>
+        <Button as="a" variant="ghost" href="https://github.com/raquel-mijares" rel="noopener">
+          GitHub
+          <ArrowUpRight aria-hidden="true" />
+        </Button>
+      </div>
+    </header>
+
+    <section aria-labelledby="about" class="section col prose">
+      <h2 id="about" class="sr-only">About</h2>
+      <p>
+        I’m a senior frontend developer in Calgary. I like owning a problem end to end:
+        understanding what the product needs, planning it, building it, testing it and shipping it.
+        I break big changes into pieces people can actually review, and I learn whatever the work
+        calls for, from payment and privacy rules to Flutter for a live broadcast.
+      </p>
+      <p>Most recently I built the web apps for Victory+ and Kidoodle.TV at APMC.</p>
+      <p class="products muted">
+        Products I’ve worked on: Victory+, Kidoodle.TV, Tugboat Logic (now OneTrust) and Kettl.
+      </p>
+    </section>
+
+    <section aria-labelledby="work" class="section">
+      <div class="col head">
+        <h2 id="work">Work</h2>
+        <p class="muted">
+          This work lives in private repositories, so each project is a short write-up: the problem,
+          what I did and what changed.
+        </p>
+      </div>
+      <ul class="gallery wide">
+        <li v-for="p in work" :key="p.slug">
+          <NuxtLink :to="`/work/${p.slug}`" class="card">
+            <ProjectCover :project="p" />
+            <span class="card-text">
+              <span class="card-head">
+                <span class="title">{{ p.title }}</span>
+                <span class="meta muted">{{ short(p.org) }}, {{ p.years.slice(-4) }}</span>
+              </span>
+              <span class="muted">{{ p.summary }}</span>
+            </span>
+          </NuxtLink>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="oss" class="section col">
+      <h2 id="oss" class="head">Open source</h2>
+      <ul class="list">
+        <li v-for="p in openSource" :key="p.slug">
+          <NuxtLink :to="`/work/${p.slug}`" class="row">
+            <span class="card-head">
+              <span class="title">{{ p.title }}</span>
+              <span class="meta muted">GitHub, {{ p.years }}</span>
+            </span>
+            <span class="muted">{{ p.summary }}</span>
+          </NuxtLink>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="recs" class="section col">
+      <h2 id="recs" class="head">Recommendations</h2>
+      <ul class="quotes">
+        <li v-for="r in featured" :key="r.name">
+          <figure>
+            <blockquote>
+              <p>{{ r.quote }}</p>
+            </blockquote>
+            <figcaption>
+              <span class="who">{{ r.name }}</span>
+              <span class="muted">{{ r.title }}, {{ r.relation }}</span>
+            </figcaption>
+          </figure>
+        </li>
+      </ul>
+      <Collapsible v-model:open="showMore">
+        <CollapsibleContent>
+          <ul class="quotes more">
+            <li v-for="r in more" :key="r.name">
+              <figure>
+                <blockquote>
+                  <p>{{ r.quote }}</p>
+                </blockquote>
+                <figcaption>
+                  <span class="who">{{ r.name }}</span>
+                  <span class="muted">{{ r.title }}, {{ r.relation }}</span>
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
+        </CollapsibleContent>
+        <CollapsibleTrigger as-child>
+          <Button variant="ghost" size="sm" class="toggle">
+            {{ showMore ? 'Show fewer' : `Show ${more.length} more` }}
+            <ChevronDown aria-hidden="true" class="chev" :class="{ up: showMore }" />
+          </Button>
+        </CollapsibleTrigger>
+      </Collapsible>
+      <p class="muted after">
+        From <a href="https://www.linkedin.com/in/raquelmjrs/" class="link" rel="noopener">recommendations on LinkedIn</a>.
+      </p>
+    </section>
+
+    <section aria-labelledby="experience" class="section col">
+      <h2 id="experience" class="head">Experience</h2>
+      <ul class="jobs">
+        <li v-for="(e, i) in experience" :key="e.org">
+          <Separator v-if="i > 0" />
+          <div class="job">
+            <span class="org">{{ e.org }}</span>
+            <span class="muted">{{ e.role }}</span>
+            <span class="muted yr">{{ e.years }}</span>
+          </div>
+        </li>
+      </ul>
+      <p class="muted after">
+        At APMC, from September 2024 to August 2026, I opened 1,112 pull requests and reviewed
+        about 385 from teammates.
+      </p>
+      <p class="muted after">
+        Before software I worked in project coordination, procurement and inventory. BSc in
+        Production Engineering, Universidad Metropolitana.
+      </p>
+    </section>
+
+    <section aria-labelledby="contact" class="section col prose">
+      <h2 id="contact" class="head">Contact</h2>
+      <p>If you’re building something I could help with, I’d like to hear about it.</p>
+      <p>
+        Email me at <a href="mailto:raquelmjrs@gmail.com" class="link">raquelmjrs@gmail.com</a>, download my
+        <a href="/raquel-mijares-resume.pdf" class="link">résumé (PDF)</a>, or find me on
+        <a href="https://www.linkedin.com/in/raquelmjrs/" class="link" rel="noopener">LinkedIn</a> and
+        <a href="https://github.com/raquel-mijares" class="link" rel="noopener">GitHub</a>.
+      </p>
+      <p class="muted">Calgary, Alberta. Local time <LocalTime /></p>
+    </section>
+  </div>
+</template>
+
+<style scoped>
+.hero {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-block);
+}
+
+.headline {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.id {
+  display: flex;
+  align-items: center;
+  gap: var(--space-item);
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  box-shadow: 0 0 0 1px var(--line);
+  font-size: var(--text-base);
+  font-weight: 500;
+}
+
+h1 {
+  margin: 0;
+  font-size: var(--text-md);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.id p {
+  margin: var(--space-pair) 0 0;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-related);
+}
+
+.section {
+  margin-top: var(--space-section);
+}
+
+h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.head {
+  display: grid;
+  gap: var(--space-related);
+  margin-bottom: var(--space-block);
+}
+
+.head p {
+  margin: 0;
+}
+
+.prose p {
+  margin: 0;
+}
+
+.prose p + p {
+  margin-top: var(--space-item);
+}
+
+.prose .products {
+  margin-top: var(--space-block);
+  font-size: var(--text-sm);
+}
+
+.prose .head {
+  margin-bottom: var(--space-item);
+}
+
+.gallery {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-group) var(--space-block);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-item);
+  text-decoration: none;
+}
+
+.card:hover :deep(.stage) {
+  transform: scale(1.025);
+}
+
+.card-text {
+  display: grid;
+  gap: var(--space-pair);
+}
+
+.card-text > .muted {
+  max-width: 52ch;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-item);
+}
+
+.title {
+  font-size: var(--text-md);
+  font-weight: 500;
+}
+
+.quotes.more {
+  margin-top: var(--space-block);
+}
+
+.toggle {
+  margin: var(--space-item) 0 0 calc(var(--space-item) * -0.75);
+}
+
+.chev {
+  transition: transform 0.2s;
+}
+
+.chev.up {
+  transform: rotate(180deg);
+}
+
+.meta {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.list {
+  list-style: none;
+  margin: 0 calc(var(--space-item) * -1);
+  padding: 0;
+}
+
+.row {
+  display: grid;
+  gap: var(--space-pair);
+  padding: var(--space-item);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background-color 0.15s;
+}
+
+.row:hover {
+  background: var(--hover);
+}
+
+.quotes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-block);
+}
+
+.quotes figure {
+  margin: 0;
+  padding-left: var(--space-item);
+  border-left: 1px solid var(--line);
+}
+
+.quotes blockquote {
+  margin: 0;
+}
+
+.quotes blockquote p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.quotes blockquote p::before {
+  content: '“';
+}
+
+.quotes blockquote p::after {
+  content: '”';
+}
+
+.quotes figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-related);
+  margin-top: var(--space-related);
+  font-size: var(--text-sm);
+}
+
+.who {
+  font-weight: 500;
+}
+
+.after {
+  margin: var(--space-block) 0 0;
+}
+
+.after + .after {
+  margin-top: var(--space-item);
+}
+
+.jobs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.job {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--space-block);
+  row-gap: var(--space-pair);
+  padding-block: var(--space-item);
+}
+
+.jobs li:first-child .job {
+  padding-top: 0;
+}
+
+.org {
+  font-weight: 500;
+}
+
+.job > .muted {
+  grid-column: 1;
+}
+
+.job .yr {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 720px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .avatar {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 420px) {
+  .card-head {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .job {
+    grid-template-columns: 1fr;
+  }
+
+  .job .yr {
+    grid-column: 1;
+    grid-row: auto;
+    text-align: left;
+  }
+}
+</style>
