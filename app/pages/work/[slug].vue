@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { FileText, Mail } from 'lucide-vue-next'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { projects } from '~/data/projects'
 
@@ -82,6 +84,21 @@ useSeoMeta({
     <section aria-labelledby="stack" class="col">
       <h2 id="stack">Stack</h2>
       <p class="muted">{{ project.stack.join(', ') }}</p>
+    </section>
+
+    <section aria-labelledby="talk" class="col talk">
+      <h2 id="talk">Want to talk about work like this?</h2>
+      <p class="muted">I’m happy to go deeper on any of it, including what I’d do differently.</p>
+      <div class="ctas">
+        <Button as="a" href="mailto:raquelmjrs@gmail.com">
+          <Mail aria-hidden="true" />
+          Email me
+        </Button>
+        <Button as="a" variant="outline" href="/raquel-mijares-resume.pdf">
+          <FileText aria-hidden="true" />
+          Résumé
+        </Button>
+      </div>
     </section>
 
     <Separator class="col sep" />
@@ -224,8 +241,27 @@ ul li::before {
   font-weight: 500;
 }
 
-.sep {
+.talk {
   margin-block-start: var(--space-section);
+  padding: var(--space-block);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.talk h2 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-pair);
+}
+
+.talk .ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-related);
+  margin-top: var(--space-item);
+}
+
+.sep {
+  margin-block-start: var(--space-group);
 }
 
 .foot {

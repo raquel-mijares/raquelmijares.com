@@ -45,6 +45,36 @@ export default defineNuxtConfig({
       ],
     },
   },
+  $production: {
+    routeRules: {
+      '/**': {
+        headers: {
+          'X-Content-Type-Options': 'nosniff',
+          'X-Frame-Options': 'DENY',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+          'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+          'Content-Security-Policy': [
+            "default-src 'self'",
+            "script-src 'self' 'unsafe-inline'",
+            "style-src 'self' 'unsafe-inline'",
+            "img-src 'self' data:",
+            "font-src 'self'",
+            "connect-src 'self'",
+            "object-src 'none'",
+            "base-uri 'self'",
+            "form-action 'self'",
+            "frame-ancestors 'none'",
+            'upgrade-insecure-requests',
+          ].join('; '),
+        },
+      },
+      '/fonts/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
+      '/images/**': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } },
+      '/og.jpg': { headers: { 'Cache-Control': 'public, max-age=86400' } },
+      '/apple-touch-icon.png': { headers: { 'Cache-Control': 'public, max-age=604800' } },
+      '/raquel-mijares-resume.pdf': { headers: { 'Cache-Control': 'public, max-age=3600' } },
+    },
+  },
   runtimeConfig: {
     public: {
       siteUrl: 'https://raquelmijares.com',
