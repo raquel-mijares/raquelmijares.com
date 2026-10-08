@@ -72,7 +72,6 @@ export default defineNuxtConfig({
       '/images/**': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } },
       '/og.jpg': { headers: { 'Cache-Control': 'public, max-age=86400' } },
       '/apple-touch-icon.png': { headers: { 'Cache-Control': 'public, max-age=604800' } },
-      '/raquel-mijares-resume.pdf': { headers: { 'Cache-Control': 'public, max-age=3600' } },
     },
   },
   runtimeConfig: {

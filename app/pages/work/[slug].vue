@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FileText, Mail } from 'lucide-vue-next'
+import { Mail } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { projects } from '~/data/projects'
@@ -93,10 +93,6 @@ useSeoMeta({
         <Button as="a" href="mailto:raquelmjrs@gmail.com">
           <Mail aria-hidden="true" />
           Email me
-        </Button>
-        <Button as="a" variant="outline" href="/raquel-mijares-resume.pdf">
-          <FileText aria-hidden="true" />
-          Résumé
         </Button>
       </div>
     </section>

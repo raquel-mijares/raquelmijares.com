@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowUpRight, ChevronDown, FileText, Mail } from 'lucide-vue-next'
+import { ArrowUpRight, ChevronDown, Mail } from 'lucide-vue-next'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
@@ -65,10 +65,6 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
         <Button as="a" href="mailto:raquelmjrs@gmail.com">
           <Mail aria-hidden="true" />
           Email me
-        </Button>
-        <Button as="a" variant="outline" href="/raquel-mijares-resume.pdf">
-          <FileText aria-hidden="true" />
-          Résumé
         </Button>
         <Button as="a" variant="ghost" href="https://www.linkedin.com/in/raquelmjrs/" rel="noopener">
           LinkedIn
@@ -203,8 +199,8 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
       <h2 id="contact" class="head">Contact</h2>
       <p>If you’re building something I could help with, I’d like to hear about it.</p>
       <p>
-        Email me at <a href="mailto:raquelmjrs@gmail.com" class="link">raquelmjrs@gmail.com</a>, download my
-        <a href="/raquel-mijares-resume.pdf" class="link">résumé (PDF)</a>, or find me on
+        Email me at <a href="mailto:raquelmjrs@gmail.com" class="link">raquelmjrs@gmail.com</a> and I’ll
+        send you my résumé, or find me on
         <a href="https://www.linkedin.com/in/raquelmjrs/" class="link" rel="noopener">LinkedIn</a> and
         <a href="https://github.com/raquel-mijares" class="link" rel="noopener">GitHub</a>.
       </p>
