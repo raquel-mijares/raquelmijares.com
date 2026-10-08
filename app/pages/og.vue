@@ -2,6 +2,10 @@
 import { projects } from '~/data/projects'
 
 definePageMeta({ layout: false })
+
+if (!import.meta.dev) {
+  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+}
 useSeoMeta({ robots: 'noindex' })
 provide('eagerPhotos', true)
 
