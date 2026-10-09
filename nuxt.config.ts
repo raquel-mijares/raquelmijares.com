@@ -3,6 +3,9 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-01',
   devtools: { enabled: false },
+  experimental: {
+    viewTransition: true,
+  },
   modules: ['shadcn-nuxt'],
   shadcn: {
     prefix: '',

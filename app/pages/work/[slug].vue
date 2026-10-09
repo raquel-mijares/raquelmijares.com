@@ -25,7 +25,7 @@ useSeoMeta({
 <template>
   <article v-if="project">
     <nav aria-label="Breadcrumb" class="crumb col">
-      <NuxtLink to="/" class="link">Raquel Mijares</NuxtLink>
+      <NuxtLink to="/" class="link vt-name">Raquel Mijares</NuxtLink>
     </nav>
 
     <header class="head col">

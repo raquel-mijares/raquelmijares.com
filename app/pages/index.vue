@@ -68,7 +68,7 @@ const short = (org: string) => org.includes('Victory+ · Kidoodle.TV') ? 'APMC' 
           <AvatarFallback :delay-ms="800">RM</AvatarFallback>
         </Avatar>
         <div>
-          <h1>Raquel Mijares</h1>
+          <h1 class="vt-name">Raquel Mijares</h1>
           <p class="muted">Senior Software Developer, Calgary</p>
         </div>
       </div>

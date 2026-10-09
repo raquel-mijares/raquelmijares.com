@@ -18,6 +18,8 @@ const covers: Record<string, Component> = {
 const style = computed(() => {
   const c = props.project.cover
   return {
+    'viewTransitionName': `cover-${props.project.slug}`,
+    'viewTransitionClass': 'cover',
     '--from': c.from,
     '--via': c.via,
     '--to': c.to,
