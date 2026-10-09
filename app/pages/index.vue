@@ -28,8 +28,8 @@ const flow = [
 const home = ref<HTMLElement>()
 useSpotlight(home)
 
-const readingFirst = reading.slice(0, 4)
-const readingMore = reading.slice(4)
+const readingFirst = reading.slice(0, 3)
+const readingMore = reading.slice(3)
 const showMoreReading = ref(false)
 
 const featured = recommendations.slice(0, 3)

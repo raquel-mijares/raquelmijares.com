@@ -2,18 +2,29 @@
 import { Moon, Sun } from 'lucide-vue-next'
 
 const dark = ref<boolean>()
+const chosen = ref<'light' | 'dark'>()
+
+useHead({
+  meta: computed(() => {
+    if (!chosen.value) return []
+    const content = chosen.value === 'dark' ? '#0f0f0f' : '#ffffff'
+    return ['light', 'dark'].map(scheme => ({ name: 'theme-color', media: `(prefers-color-scheme: ${scheme})`, content }))
+  }),
+})
 
 const systemDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
 
 onMounted(() => {
   const set = document.documentElement.dataset.theme
   dark.value = set ? set === 'dark' : systemDark()
+  if (set === 'light' || set === 'dark') chosen.value = set
 })
 
 function toggle() {
   dark.value = !dark.value
   const theme = dark.value ? 'dark' : 'light'
   document.documentElement.dataset.theme = theme
+  chosen.value = theme
   try {
     localStorage.setItem('theme', theme)
   }

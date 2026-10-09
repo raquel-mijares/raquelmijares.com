@@ -19,12 +19,6 @@ export const reading: Article[] = [
     note: 'How I think about building on a headless library like Reka UI instead of starting from zero.',
   },
   {
-    title: 'Write code that is easy to delete, not easy to extend',
-    author: 'tef',
-    href: 'https://programmingisterrible.com/post/139222674273/how-to-write-disposable-code-in-large-systems',
-    note: 'Most of my best work at APMC ended with deleting code: about 12,000 lines across the migrations.',
-  },
-  {
     title: 'Designing robust and predictable APIs with idempotency',
     author: 'Brandur Leach, Stripe',
     href: 'https://stripe.com/blog/idempotency',
