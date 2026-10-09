@@ -116,8 +116,24 @@
   --font-mono: var(--mono);
 }
 
+:root[data-theme='dark'] {
+  --bg: #0f0f0f;
+  --ink: #ededed;
+  --ink-2: #a3a3a3;
+  --line: #242424;
+  --hover: #181818;
+  --accent: #f08a63;
+  --ok: #3ccf7a;
+  --d-bg: #151515;
+  --d-ink: #ededed;
+  --d-muted: #a8a8a8;
+  --d-line: #333333;
+  --d-node: #1c1c1c;
+  color-scheme: dark;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --bg: #0f0f0f;
     --ink: #ededed;
     --ink-2: #a3a3a3;
@@ -496,4 +512,42 @@
 
 .mock .mono {
   font-family: var(--mono);
+}
+
+.theme-toggle .sun {
+  display: none;
+}
+
+:root[data-theme='dark'] .theme-toggle .sun {
+  display: block;
+}
+
+:root[data-theme='dark'] .theme-toggle .moon {
+  display: none;
+}
+
+:root[data-theme='dark'] .cover {
+  filter: saturate(0.9) brightness(0.88);
+}
+
+:root[data-theme='dark'] .cover.dark {
+  filter: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .theme-toggle .sun {
+    display: block;
+  }
+
+  :root:not([data-theme='light']) .theme-toggle .moon {
+    display: none;
+  }
+
+  :root:not([data-theme='light']) .cover {
+    filter: saturate(0.9) brightness(0.88);
+  }
+
+  :root:not([data-theme='light']) .cover.dark {
+    filter: none;
+  }
 }

@@ -87,14 +87,4 @@ const style = computed(() => {
 .hero .stage {
   font-size: 1.3cqw;
 }
-
-@media (prefers-color-scheme: dark) {
-  .cover {
-    filter: saturate(0.9) brightness(0.88);
-  }
-
-  .cover.dark {
-    filter: none;
-  }
-}
 </style>

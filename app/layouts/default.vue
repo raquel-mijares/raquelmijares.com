@@ -1,6 +1,9 @@
 <template>
   <div class="page">
     <a href="#main" class="skip">Skip to content</a>
+    <div class="top wide">
+      <ThemeToggle />
+    </div>
     <main id="main">
       <slot />
     </main>
@@ -16,8 +19,18 @@
 
 <style scoped>
 .page {
+  position: relative;
   min-height: 100vh;
   padding: var(--space-page) var(--gutter);
+}
+
+.top {
+  position: absolute;
+  top: 20px;
+  left: var(--gutter);
+  right: var(--gutter);
+  display: flex;
+  justify-content: flex-end;
 }
 
 .site-foot {
