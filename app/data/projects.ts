@@ -59,7 +59,7 @@ export const projects: Project[] = [
     cover: { from: '#d3e4d6', via: '#9fc2ab', to: '#eef4ec' },
     caption: 'The order of events on page load after the fix. Consent defaults are in the server-rendered HTML before Tag Manager loads.',
     tone: 'dark',
-    summary: 'Fixing the order in which consent, Tag Manager and ad tags load, so nothing fires before the user decides.',
+    summary: 'Ads and analytics waited for the viewer’s privacy choice instead of loading before it.',
     context:
       'The site ran a consent banner, Google Tag Manager and several ad and analytics tags. The banner is where the user decided; Tag Manager is where tags actually fired.',
     problem:
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     cover: { from: '#e1daf4', via: '#b6a7e0', to: '#f4f1fb' },
     caption: 'Three modal systems replaced by one base dialog with shared accessibility behaviour and a theme per brand.',
     tone: 'light',
-    summary: 'Three modal systems replaced by one accessible base component, themed for two brands.',
+    summary: 'Three different pop-up systems became one accessible dialog, styled for both brands.',
     context:
       'Two streaming brands shared one Nuxt monorepo. Dialogs were everywhere: sign-in, passcodes, TV provider sign-in, promotions.',
     problem:
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     cover: { from: '#d2e6f5', via: '#9fc5e6', to: '#eef6fc' },
     caption: 'Route access as a matrix. Each page declares whether registered users, guests or signed-out visitors can see it.',
     tone: 'light',
-    summary: 'One cookie-backed source for sign-in state, and pages that declare who can see them.',
+    summary: 'Sign-in that stays in sync across the app, and pages that say clearly who can open them.',
     context:
       'Server-side rendered app, two brands, three kinds of visitor: registered users, guests and people who are not signed in.',
     problem:
@@ -174,7 +174,7 @@ export const projects: Project[] = [
     cover: { from: '#3a2f25', via: '#8a6236', to: '#1d1814', dark: true },
     caption: 'Before, some ad beacons fired twice. After, each fires once, and open tabs share one ad session through BroadcastChannel.',
     tone: 'dark',
-    summary: 'Deduplicating ad tracking beacons so revenue reports count each ad once.',
+    summary: 'Ad reports counted each ad once, so the revenue numbers were right.',
     context:
       'Ad-supported video sends tracking beacons as an ad plays. Those beacons are what revenue reporting is built on.',
     problem:
@@ -229,7 +229,7 @@ export const projects: Project[] = [
     cover: { from: '#f5e9c4', via: '#e6cc80', to: '#fbf6e6' },
     caption: 'The Revenue Centers data model and its nine-part rollout.',
     tone: 'light',
-    summary: 'A feature built end to end: data model, tenant migrations, GraphQL API and permissions.',
+    summary: 'A new way for customers to track revenue by area, built end to end from database to screen.',
     context:
       'Kettl is production management software for live events. Customers are tenants with years of existing data.',
     problem:
