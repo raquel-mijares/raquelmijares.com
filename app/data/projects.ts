@@ -72,7 +72,7 @@ export const projects: Project[] = [
       'Made consent per account, so a decision follows the user instead of the device.',
     ],
     outcome: [
-      'Tags fire only after a decision, and the decision reaches the platforms that need it.',
+      'Tags fired only after a decision, and the decision reached the platforms that needed it.',
       'Along the way, fixed a missing placement parameter that was misattributing revenue in marketing reports.',
     ],
     stack: ['Nuxt SSR', 'Google Tag Manager', 'Consent Mode', 'Sourcepoint', 'Meta Pixel'],
@@ -87,11 +87,11 @@ export const projects: Project[] = [
     cover: { from: '#283656', via: '#45608f', to: '#121a2c', dark: true },
     caption: 'Signal flow in the operator console: inputs go through the switcher to the program output, with ad breaks triggered from the app.',
     tone: 'dark',
-    summary: 'A macOS app that broadcast operators use live during games, built in Flutter.',
+    summary: 'A macOS app that broadcast operators used live during games, built in Flutter.',
     context:
       'During a live game, operators need one desktop tool to run the stream: pick the input, trigger ad breaks and keep the feed healthy.',
     problem:
-      'During live games, a lost ad-break response meant starting over, input names were hard to read, an input could be switched on air by mistake, and passphrase-protected SRT feeds would not play. And the web team had never used Flutter.',
+      'A lost ad-break response meant starting over, input names were hard to read, an input could be switched on air by mistake, and passphrase-protected SRT feeds would not play. And the web team had never used Flutter.',
     approach: [
       'Learned Dart and Flutter for the project.',
       'Built the ad-break controls, including recovering a break whose response was lost and importing breaks from a spreadsheet.',
@@ -268,9 +268,8 @@ export const projects: Project[] = [
       'Stayed through the OneTrust acquisition and the platform integration that followed.',
     ],
     outcome: [
-      'Customers could see how audit-ready they were and what changed in their evidence since the last audit.',
-      'The shared component library cut duplication across the dashboards.',
-      'Shipped and maintained through the OneTrust acquisition.',
+      'Readiness and evidence changes shown side by side for each audit cycle.',
+      'One component library behind the dashboards instead of duplicated UI.',
     ],
     stack: ['React', 'TypeScript', 'Redux', 'Storybook', 'Cypress'],
   },
