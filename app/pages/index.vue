@@ -21,7 +21,7 @@ const flow = [
   { title: 'Designed in Figma', text: 'I match the design team’s Figma specs, down to spacing and line height.' },
   { title: 'Design tokens', text: 'Three layers: a shared base, each brand’s colors, then component tokens like the dialog’s.' },
   { title: 'Storybook', text: 'At Tugboat Logic I grew the component library, with every component in every state.' },
-  { title: 'Shipped', text: 'Three dialog systems became one, used by both Victory+ and Kidoodle.TV.' },
+  { title: 'Shipped', text: 'Three modal systems became one dialog, used by both Victory+ and Kidoodle.TV.' },
 ]
 
 const home = ref<HTMLElement>()
@@ -51,7 +51,7 @@ useHead({
   }],
 })
 
-const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneTrust)', '')
+const short = (org: string) => org.includes('Victory+ · Kidoodle.TV') ? 'APMC' : org.split(' · ')[0]!.replace(' (acquired by OneTrust)', '')
 </script>
 
 <template>
@@ -172,7 +172,7 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
         <p class="muted">
           Victory+ and Kidoodle.TV shared one codebase. Buttons, dialogs and forms were the same
           components; each brand only changed the colors, fonts and corners. Switch brands below to
-          see it. I built the dialog system both apps use,
+          see it. I built the dialog system both apps used,
           <NuxtLink to="/work/dialog-system" class="link">here’s how</NuxtLink>.
         </p>
       </div>
