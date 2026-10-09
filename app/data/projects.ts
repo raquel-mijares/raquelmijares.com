@@ -91,7 +91,7 @@ export const projects: Project[] = [
     context:
       'During a live game, operators need one desktop tool to run the stream: pick the input, trigger ad breaks and keep the feed healthy.',
     problem:
-      'It had to be dependable under live conditions, on a stack the web team had not used before.',
+      'During live games, a lost ad-break response meant starting over, input names were hard to read, an input could be switched on air by mistake, and passphrase-protected SRT feeds would not play. And the web team had never used Flutter.',
     approach: [
       'Learned Dart and Flutter for the project.',
       'Built the ad-break controls, including recovering a break whose response was lost and importing breaks from a spreadsheet.',
@@ -101,8 +101,8 @@ export const projects: Project[] = [
       'Cut and shipped releases myself.',
     ],
     outcome: [
-      'Used live, during games, by the people running the broadcast.',
-      '86 pull requests over its life.',
+      'Operators could recover a lost ad break and import breaks from a spreadsheet, switching inputs on air asked for confirmation first, and protected SRT feeds played.',
+      'Used live during games by the people running the broadcast, across 86 pull requests.',
     ],
     stack: ['Flutter', 'Dart', 'macOS', 'SRT'],
     quote: {
@@ -268,7 +268,9 @@ export const projects: Project[] = [
       'Stayed through the OneTrust acquisition and the platform integration that followed.',
     ],
     outcome: [
-      'Shipped and maintained through the acquisition.',
+      'Customers could see how audit-ready they were and what changed in their evidence since the last audit.',
+      'The shared component library cut duplication across the dashboards.',
+      'Shipped and maintained through the OneTrust acquisition.',
     ],
     stack: ['React', 'TypeScript', 'Redux', 'Storybook', 'Cypress'],
   },
