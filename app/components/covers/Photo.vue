@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps<{ src: string, pos?: string }>()
+import { smallWidths } from '~/data/photos'
+
+const props = defineProps<{ src: string, pos?: string }>()
 
 const el = ref<HTMLElement>()
 const eager = inject('eagerPhotos', false)
@@ -9,7 +11,16 @@ const loaded = ref(eager)
 let io: IntersectionObserver | undefined
 let idle: ReturnType<typeof setTimeout> | undefined
 
+const chosen = ref(props.src)
+
+const pick = () => {
+  const small = smallWidths[props.src]
+  const needed = (el.value?.clientWidth ?? Infinity) * (window.devicePixelRatio || 1)
+  chosen.value = small && needed <= small ? props.src.replace('.webp', '-sm.webp') : props.src
+}
+
 const reveal = () => {
+  pick()
   near.value = true
   io?.disconnect()
 }
@@ -37,7 +48,7 @@ onBeforeUnmount(() => {
 <template>
   <span ref="el" class="frame">
     <img
-      :src="near ? src : undefined"
+      :src="near ? chosen : undefined"
       alt=""
       decoding="async"
       class="photo"

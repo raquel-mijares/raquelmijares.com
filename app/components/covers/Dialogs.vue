@@ -25,7 +25,7 @@
     </div>
     <pre class="code snippet"><span class="tg">&lt;BaseDialog</span>
   <span class="p">v-model:open</span>=<span class="s">"open"</span>
-  <span class="p">theme</span>=<span class="s">"kidoodle"</span>
+  <span class="p">size</span>=<span class="s">"sm"</span>
 <span class="tg">/&gt;</span></pre>
   </div>
 </template>
@@ -92,13 +92,13 @@
 }
 
 .digits .cur {
-  border-color: #6a5cff;
-  box-shadow: 0 0 0 3px rgb(106 92 255 / 0.18);
+  border-color: #2630f9;
+  box-shadow: 0 0 0 3px rgb(38 48 249 / 0.18);
 }
 
 .wide {
   width: 100%;
-  background: #6a5cff;
+  background: #2630f9;
 }
 
 .snippet {

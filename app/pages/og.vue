@@ -20,10 +20,10 @@ const checkout = projects.find(p => p.slug === 'subscription-checkout')!
         <img src="/images/raquel.webp" alt="" class="avatar">
         <div>
           <div class="name">Raquel Mijares</div>
-          <div class="role">Senior Frontend Developer, Calgary</div>
+          <div class="role">Senior Software Developer, Calgary</div>
         </div>
       </div>
-      <p class="headline">I take products from a rough idea to production, and leave the code easier to work in than I found it.</p>
+      <p class="headline">I build the parts of a product that have to be right: payments, privacy, and the screens people use every day.</p>
       <p class="url">raquelmijares.com</p>
     </div>
     <div class="art">

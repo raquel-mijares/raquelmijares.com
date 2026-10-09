@@ -1,0 +1,17 @@
+export const smallWidths: Record<string, number> = {
+  '/images/hero-ballpark.webp': 400,
+  '/images/kids-bear.webp': 192,
+  '/images/kids-cats.webp': 192,
+  '/images/kids-frog.webp': 192,
+  '/images/kids-giraffe.webp': 192,
+  '/images/kids-narwhal.webp': 192,
+  '/images/kids-panda.webp': 192,
+  '/images/poster-ballpark.webp': 160,
+  '/images/poster-fans.webp': 160,
+  '/images/poster-skater.webp': 160,
+  '/images/poster-soccer-duel.webp': 160,
+  '/images/poster-soccer-run.webp': 160,
+  '/images/poster-soccer-team.webp': 160,
+  '/images/preview-faceoff.webp': 320,
+  '/images/program-wide.webp': 384,
+}

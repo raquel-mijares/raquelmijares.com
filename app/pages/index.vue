@@ -17,6 +17,16 @@ const experience = [
   { org: 'InceptionU', role: 'Full Stack Development Program', years: '2020—2021' },
 ]
 
+const flow = [
+  { title: 'Designed in Figma', text: 'I match the design team’s Figma specs, down to spacing and line height.' },
+  { title: 'Design tokens', text: 'Three layers: a shared base, each brand’s colors, then component tokens like the dialog’s.' },
+  { title: 'Storybook', text: 'At Tugboat Logic I grew the component library, with every component in every state.' },
+  { title: 'Shipped', text: 'Three dialog systems became one, used by both Victory+ and Kidoodle.TV.' },
+]
+
+const home = ref<HTMLElement>()
+useSpotlight(home)
+
 const featured = recommendations.slice(0, 3)
 const more = recommendations.slice(3)
 const showMore = ref(false)
@@ -30,12 +40,12 @@ useHead({
       '@context': 'https://schema.org',
       '@type': 'Person',
       'name': 'Raquel Mijares',
-      'jobTitle': 'Senior Frontend Developer',
+      'jobTitle': 'Senior Software Developer',
       'url': siteUrl,
       'image': `${siteUrl}/images/raquel.webp`,
       'address': { '@type': 'PostalAddress', 'addressLocality': 'Calgary', 'addressRegion': 'AB', 'addressCountry': 'CA' },
       'sameAs': ['https://www.linkedin.com/in/raquelmjrs/', 'https://github.com/raquel-mijares'],
-      'knowsAbout': ['Vue', 'Nuxt', 'React', 'TypeScript', 'Flutter', 'Web accessibility', 'Consent management', 'Payments'],
+      'knowsAbout': ['Vue', 'Nuxt', 'React', 'TypeScript', 'Flutter', 'Design systems', 'Storybook', 'Figma', 'Web accessibility', 'Consent management', 'Payments', 'AI-assisted development'],
       'alumniOf': 'Universidad Metropolitana',
     }),
   }],
@@ -45,7 +55,7 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
 </script>
 
 <template>
-  <div>
+  <div ref="home" class="home">
     <header class="col hero">
       <div class="id">
         <Avatar class="avatar">
@@ -54,12 +64,12 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
         </Avatar>
         <div>
           <h1>Raquel Mijares</h1>
-          <p class="muted">Senior Frontend Developer, Calgary</p>
+          <p class="muted">Senior Software Developer, Calgary</p>
         </div>
       </div>
       <p class="headline">
-        I take products from a rough idea to production, and leave the code easier to work in
-        than I found it.
+        I build the parts of a product that have to be right: payments, privacy, and the screens
+        people use every day.
       </p>
       <div class="ctas">
         <Button as="a" href="mailto:raquelmjrs@gmail.com">
@@ -80,10 +90,14 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
     <section aria-labelledby="about" class="section col prose">
       <h2 id="about" class="sr-only">About</h2>
       <p>
-        I’m a senior frontend developer in Calgary. I like owning a problem end to end:
+        I’m a senior software developer in Calgary, and the frontend is where I do my best work. I like owning a problem end to end:
         understanding what the product needs, planning it, building it, testing it and shipping it.
         I break big changes into pieces people can actually review, and I learn whatever the work
         calls for, from payment and privacy rules to Flutter for a live broadcast.
+      </p>
+      <p>
+        AI is part of how I work every day, from comparing approaches before I build to automating
+        the repetitive parts of the job.
       </p>
       <p>Most recently I built the web apps for Victory+ and Kidoodle.TV at APMC.</p>
       <p class="products muted">
@@ -91,7 +105,7 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
       </p>
     </section>
 
-    <section aria-labelledby="work" class="section">
+    <section aria-labelledby="work" class="section breakout">
       <div class="col head">
         <h2 id="work">Work</h2>
         <p class="muted">
@@ -101,7 +115,7 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
       </div>
       <ul class="gallery wide">
         <li v-for="p in work" :key="p.slug">
-          <NuxtLink :to="`/work/${p.slug}`" class="card">
+          <NuxtLink :to="`/work/${p.slug}`" class="card" data-spot>
             <ProjectCover :project="p" />
             <span class="card-text">
               <span class="card-head">
@@ -119,7 +133,7 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
       <h2 id="oss" class="head">Open source</h2>
       <ul class="list">
         <li v-for="p in openSource" :key="p.slug">
-          <NuxtLink :to="`/work/${p.slug}`" class="row">
+          <NuxtLink :to="`/work/${p.slug}`" class="row" data-spot>
             <span class="card-head">
               <span class="title">{{ p.title }}</span>
               <span class="meta muted">GitHub, {{ p.years }}</span>
@@ -128,6 +142,54 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
           </NuxtLink>
         </li>
       </ul>
+    </section>
+
+    <section aria-labelledby="experience" class="section col">
+      <h2 id="experience" class="head">Experience</h2>
+      <ul class="jobs">
+        <li v-for="(e, i) in experience" :key="e.org">
+          <Separator v-if="i > 0" />
+          <div class="job">
+            <span class="org">{{ e.org }}</span>
+            <span class="muted">{{ e.role }}</span>
+            <span class="muted yr">{{ e.years }}</span>
+          </div>
+        </li>
+      </ul>
+      <p class="muted after">
+        At APMC, from September 2024 to August 2026, I opened 1,112 pull requests and reviewed
+        about 385 from teammates.
+      </p>
+      <p class="muted after">
+        Before software I worked in project coordination, procurement and inventory. BSc in
+        Production Engineering, Universidad Metropolitana.
+      </p>
+    </section>
+
+    <section aria-labelledby="system" class="section breakout">
+      <div class="col head">
+        <h2 id="system">Design system</h2>
+        <p class="muted">
+          Victory+ and Kidoodle.TV shared one codebase. Buttons, dialogs and forms were the same
+          components; each brand only changed the colors, fonts and corners. Switch brands below to
+          see it. I built the dialog system both apps use,
+          <NuxtLink to="/work/dialog-system" class="link">here’s how</NuxtLink>.
+        </p>
+      </div>
+      <div class="wide">
+        <DesignSystem />
+      </div>
+      <ol class="flow wide">
+        <li v-for="(f, i) in flow" :key="f.title">
+          <span class="step">{{ String(i + 1).padStart(2, '0') }}</span>
+          <span class="title">{{ f.title }}</span>
+          <span class="muted">{{ f.text }}</span>
+        </li>
+      </ol>
+      <p class="col muted note">
+        Colors and sizes are the brands’ real tokens, taken from the live Kidoodle.TV site and the
+        last public build of Victory+.
+      </p>
     </section>
 
     <section aria-labelledby="recs" class="section col">
@@ -170,28 +232,6 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
       </Collapsible>
       <p class="muted after">
         From <a href="https://www.linkedin.com/in/raquelmjrs/" class="link" rel="noopener">recommendations on LinkedIn</a>.
-      </p>
-    </section>
-
-    <section aria-labelledby="experience" class="section col">
-      <h2 id="experience" class="head">Experience</h2>
-      <ul class="jobs">
-        <li v-for="(e, i) in experience" :key="e.org">
-          <Separator v-if="i > 0" />
-          <div class="job">
-            <span class="org">{{ e.org }}</span>
-            <span class="muted">{{ e.role }}</span>
-            <span class="muted yr">{{ e.years }}</span>
-          </div>
-        </li>
-      </ul>
-      <p class="muted after">
-        At APMC, from September 2024 to August 2026, I opened 1,112 pull requests and reviewed
-        about 385 from teammates.
-      </p>
-      <p class="muted after">
-        Before software I worked in project coordination, procurement and inventory. BSc in
-        Production Engineering, Universidad Metropolitana.
       </p>
     </section>
 
@@ -260,6 +300,15 @@ h1 {
   margin-top: var(--space-section);
 }
 
+.breakout,
+.breakout + .section {
+  margin-top: calc(var(--space-section) + var(--space-block));
+}
+
+.breakout > .head {
+  margin-bottom: calc(var(--space-block) + var(--space-related));
+}
+
 h2 {
   margin: 0;
   font-size: var(--text-lg);
@@ -281,6 +330,10 @@ h2 {
   margin: 0;
 }
 
+.prose .head {
+  margin-bottom: var(--space-item);
+}
+
 .prose p + p {
   margin-top: var(--space-item);
 }
@@ -290,9 +343,6 @@ h2 {
   font-size: var(--text-sm);
 }
 
-.prose .head {
-  margin-bottom: var(--space-item);
-}
 
 .gallery {
   list-style: none;
@@ -308,8 +358,28 @@ h2 {
   text-decoration: none;
 }
 
-.card:hover :deep(.stage) {
+@media (hover: hover) {
+  .card:hover :deep(.stage) {
+    transform: scale(1.025);
+  }
+
+  .row:hover {
+    background: var(--hover);
+  }
+}
+
+.card.is-spot :deep(.stage) {
   transform: scale(1.025);
+}
+
+.card:active :deep(.stage) {
+  transform: scale(1.01);
+  transition-duration: 0.15s;
+}
+
+.row.is-spot,
+.row:active {
+  background: var(--hover);
 }
 
 .card-text {
@@ -369,9 +439,6 @@ h2 {
   transition: background-color 0.15s;
 }
 
-.row:hover {
-  background: var(--hover);
-}
 
 .quotes {
   list-style: none;
@@ -458,9 +525,47 @@ h2 {
   font-variant-numeric: tabular-nums;
 }
 
+.flow {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-group) auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-block);
+}
+
+.flow li {
+  display: grid;
+  align-content: start;
+  gap: var(--space-pair);
+  padding-top: var(--space-item);
+  border-top: 1px solid var(--line);
+}
+
+.flow .muted {
+  font-size: var(--text-sm);
+  text-wrap: pretty;
+}
+
+.step {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.note {
+  margin-top: var(--space-block);
+  margin-bottom: 0;
+  font-size: var(--text-sm);
+}
+
 @media (max-width: 720px) {
   .gallery {
     grid-template-columns: 1fr;
+  }
+
+  .flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

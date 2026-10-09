@@ -10,6 +10,22 @@
 }
 
 @font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/nunito.woff2') format('woff2');
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'IBM Plex Mono';
   src: url('/fonts/plexmono.woff2') format('woff2');
   font-weight: 400;
@@ -118,6 +134,36 @@
   }
 }
 
+@media (min-width: 1800px) {
+  :root {
+    --measure: 680px;
+    --wide: 1320px;
+    --text-base: 16px;
+    --text-md: 17px;
+    --text-lg: 21px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 2400px) {
+  :root {
+    --measure: 740px;
+    --wide: 1480px;
+    --text-sm: 14px;
+    --text-base: 17px;
+    --text-md: 18px;
+    --text-lg: 23px;
+    --text-2xl: 42px;
+  }
+
+  body {
+    font-size: 17px;
+  }
+}
+
 @layer base {
   *,
   *::before,
@@ -139,17 +185,6 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-  }
-
-  @media (min-width: 1800px) {
-    body {
-      font-size: 16px;
-    }
-
-    :root {
-      --measure: 660px;
-      --wide: 1280px;
-    }
   }
 
   a {
