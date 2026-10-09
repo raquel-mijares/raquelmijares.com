@@ -33,7 +33,7 @@ export const projects: Project[] = [
     tone: 'light',
     summary: 'Six ways into the purchase flow became one in-app checkout, with plans and prices kept in one place.',
     context:
-      'Victory+ is a sports streaming service. On the web app it sold a Texas Rangers subscription with an annual and a monthly plan, paid through Stripe.',
+      'Victory+ was a sports streaming service. On the web app it sold a Texas Rangers subscription with an annual and a monthly plan, paid through Stripe.',
     problem:
       'The purchase flow had grown in pieces. Entry points were spread across the app, some of them sent people out to an external page, and plan IDs and prices were copied into many files.',
     approach: [
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     tone: 'dark',
     summary: 'Fixing the order in which consent, Tag Manager and ad tags load, so nothing fires before the user decides.',
     context:
-      'The site runs a consent banner, Google Tag Manager and several ad and analytics tags. The banner is where the user decides; Tag Manager is where tags actually fire.',
+      'The site ran a consent banner, Google Tag Manager and several ad and analytics tags. The banner is where the user decided; Tag Manager is where tags actually fired.',
     problem:
       'Two silent bugs. The choice made in the banner never reached Google. And Tag Manager could load before the consent defaults were set, and Google treats undefined consent as granted.',
     approach: [
@@ -123,7 +123,7 @@ export const projects: Project[] = [
     tone: 'light',
     summary: 'Three modal systems replaced by one accessible base component, themed for two brands.',
     context:
-      'Two streaming brands share one Nuxt monorepo. Dialogs are everywhere: sign-in, passcodes, TV provider sign-in, promotions.',
+      'Two streaming brands shared one Nuxt monorepo. Dialogs were everywhere: sign-in, passcodes, TV provider sign-in, promotions.',
     problem:
       'Three ways to open a modal had grown side by side, and earlier attempts to unify them had stalled. Focus handling and accessibility depended on which one a screen used.',
     approach: [

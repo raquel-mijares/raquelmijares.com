@@ -892,6 +892,17 @@
     display: none;
   }
 
+  .ds .tk-code.brand::before,
+  .ds .tk-row:not(.shared) .tk-value::before {
+    content: '→ ';
+    color: var(--t-muted);
+    font-weight: 400;
+  }
+
+  .ds .tk-row:not(.shared) .tk-value::before {
+    margin-right: -4px;
+  }
+
   .ds .spec {
     grid-template-columns: 1fr;
     gap: 6px;
@@ -917,9 +928,44 @@
 
   .ds .pairs li {
     grid-template-columns: 36px 1fr auto;
+    row-gap: 2px;
   }
 
   .ds .pair-label {
+    grid-column: 2 / -1;
+    grid-row: 1;
+  }
+
+  .ds .ratio {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .ds .grade {
+    grid-row: 2;
+  }
+
+  .ds .sample {
+    grid-row: 1 / span 2;
+    height: 36px;
+  }
+
+  .ds .swatches {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ds .sw-icon {
     display: none;
+  }
+
+  .ds .swatch {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .ds .chip {
+    width: 24px;
+    height: 24px;
   }
 }

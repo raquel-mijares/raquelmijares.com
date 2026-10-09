@@ -158,7 +158,7 @@ const short = (org: string) => org.split(' · ')[0]!.replace(' (acquired by OneT
       </ul>
       <p class="muted after">
         At APMC, from September 2024 to August 2026, I opened 1,112 pull requests and reviewed
-        about 385 from teammates.
+        502 from teammates.
       </p>
       <p class="muted after">
         Before software I worked in project coordination, procurement and inventory. BSc in
