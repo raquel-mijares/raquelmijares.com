@@ -90,7 +90,7 @@ const short = (org: string) => org.includes('Victory+ · Kidoodle.TV') ? 'APMC' 
     <section aria-labelledby="about" class="section col prose">
       <h2 id="about" class="sr-only">About</h2>
       <p>
-        I’m a senior software developer in Calgary, and the frontend is where I do my best work. I like owning a problem end to end:
+        I’m a senior software developer in Calgary, and I like owning a problem end to end, with the frontend where I do my best work:
         understanding what the product needs, planning it, building it, testing it and shipping it.
         I break big changes into pieces people can actually review, and I learn whatever the work
         calls for, from payment and privacy rules to Flutter for a live broadcast.
