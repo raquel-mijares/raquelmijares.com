@@ -18,18 +18,18 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
-      title: 'Raquel Mijares · Senior Software Developer (Frontend), Calgary',
+      title: 'Raquel Mijares · Senior Software Developer, Calgary',
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           name: 'description',
           content:
-            'Senior software developer in Calgary, focused on frontend: payments, privacy and the screens people use every day.',
+            'Senior software developer in Calgary: payments, privacy and the screens people use every day.',
         },
         { name: 'theme-color', content: '#ffffff', media: '(prefers-color-scheme: light)' },
         { name: 'theme-color', content: '#0f0f0f', media: '(prefers-color-scheme: dark)' },
         { property: 'og:title', content: 'Raquel Mijares' },
-        { property: 'og:description', content: 'Senior software developer in Calgary, focused on frontend: payments, privacy and the screens people use every day.' },
+        { property: 'og:description', content: 'Senior software developer in Calgary: payments, privacy and the screens people use every day.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:image', content: 'https://raquelmijares.com/og.jpg?v=2' },
         { property: 'og:image:width', content: '1200' },
