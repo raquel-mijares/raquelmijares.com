@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Separator } from '@/components/ui/separator'
 import { projects } from '~/data/projects'
+import { reading } from '~/data/reading'
 import { recommendations } from '~/data/recommendations'
 
 const work = projects.filter(p => p.category !== 'open-source')
@@ -239,6 +240,27 @@ const short = (org: string) => org.includes('Victory+ · Kidoodle.TV') ? 'APMC' 
       </p>
     </section>
 
+    <section aria-labelledby="reading" class="section col">
+      <div class="head">
+        <h2 id="reading">Reading</h2>
+        <p class="muted">Articles I keep coming back to, and where they show up in my work.</p>
+      </div>
+      <ul class="list">
+        <li v-for="a in reading" :key="a.href">
+          <a :href="a.href" class="row" rel="noopener" data-spot>
+            <span class="card-head">
+              <span class="title">
+                {{ a.title }}
+                <ArrowUpRight aria-hidden="true" class="ext" />
+              </span>
+              <span class="meta muted">{{ a.author }}</span>
+            </span>
+            <span class="muted">{{ a.note }}</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
     <section aria-labelledby="contact" class="section col prose">
       <h2 id="contact" class="head">Contact</h2>
       <p>If you’re building something I could help with, I’d like to hear about it.</p>
@@ -405,6 +427,22 @@ h2 {
 .title {
   font-size: var(--text-md);
   font-weight: 500;
+}
+
+.ext {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 2px;
+  vertical-align: -1px;
+  color: var(--ink-2);
+  transition: transform 0.15s, color 0.15s;
+}
+
+.row:hover .ext,
+.row.is-spot .ext {
+  color: var(--ink);
+  transform: translate(1px, -1px);
 }
 
 .quotes.more {

@@ -1,0 +1,57 @@
+export interface Article {
+  title: string
+  author: string
+  href: string
+  note: string
+}
+
+export const reading: Article[] = [
+  {
+    title: 'Don’t Sync State. Derive It!',
+    author: 'Kent C. Dodds',
+    href: 'https://kentcdodds.com/blog/dont-sync-state-derive-it',
+    note: 'Why auth state at APMC ended up in one cookie instead of two stores that kept drifting apart.',
+  },
+  {
+    title: 'Build vs Buy: Component Libraries edition',
+    author: 'Kent C. Dodds',
+    href: 'https://kentcdodds.com/blog/build-vs-buy-component-libraries-edition',
+    note: 'How I think about building on a headless library like Reka UI instead of starting from zero.',
+  },
+  {
+    title: 'Write code that is easy to delete, not easy to extend',
+    author: 'tef',
+    href: 'https://programmingisterrible.com/post/139222674273/how-to-write-disposable-code-in-large-systems',
+    note: 'Most of my best work at APMC ended with deleting code: about 12,000 lines across the migrations.',
+  },
+  {
+    title: 'Designing robust and predictable APIs with idempotency',
+    author: 'Brandur Leach, Stripe',
+    href: 'https://stripe.com/blog/idempotency',
+    note: 'Worth rereading before touching any checkout where a request can be retried.',
+  },
+  {
+    title: 'Parse, don’t validate',
+    author: 'Alexis King',
+    href: 'https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/',
+    note: 'Check data once at the edge, then let TypeScript carry the guarantee everywhere else.',
+  },
+  {
+    title: 'Falsehoods Programmers Believe About Names',
+    author: 'Patrick McKenzie',
+    href: 'https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/',
+    note: 'A good reminder before building any sign-up or checkout form.',
+  },
+  {
+    title: 'Choose Boring Technology',
+    author: 'Dan McKinley',
+    href: 'https://mcfunley.com/choose-boring-technology',
+    note: 'The filter I use before adding anything new to a codebase other people will maintain.',
+  },
+  {
+    title: 'On Being A Senior Engineer',
+    author: 'John Allspaw',
+    href: 'https://www.kitchensoap.com/2012/10/25/on-being-a-senior-engineer/',
+    note: 'The best description I’ve found of what “senior” should actually mean.',
+  },
+]
