@@ -31,18 +31,6 @@ export const reading: Article[] = [
     note: 'Worth rereading before touching any checkout where a request can be retried.',
   },
   {
-    title: 'Parse, don’t validate',
-    author: 'Alexis King',
-    href: 'https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/',
-    note: 'Check data once at the edge, then let TypeScript carry the guarantee everywhere else.',
-  },
-  {
-    title: 'Falsehoods Programmers Believe About Names',
-    author: 'Patrick McKenzie',
-    href: 'https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/',
-    note: 'A good reminder before building any sign-up or checkout form.',
-  },
-  {
     title: 'Choose Boring Technology',
     author: 'Dan McKinley',
     href: 'https://mcfunley.com/choose-boring-technology',

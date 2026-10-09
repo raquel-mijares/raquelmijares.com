@@ -28,6 +28,10 @@ const flow = [
 const home = ref<HTMLElement>()
 useSpotlight(home)
 
+const readingFirst = reading.slice(0, 4)
+const readingMore = reading.slice(4)
+const showMoreReading = ref(false)
+
 const featured = recommendations.slice(0, 3)
 const more = recommendations.slice(3)
 const showMore = ref(false)
@@ -245,20 +249,40 @@ const short = (org: string) => org.includes('Victory+ · Kidoodle.TV') ? 'APMC' 
         <h2 id="reading">Reading</h2>
         <p class="muted">Articles I keep coming back to, and where they show up in my work.</p>
       </div>
-      <ul class="list">
-        <li v-for="a in reading" :key="a.href">
-          <a :href="a.href" class="row" rel="noopener" data-spot>
-            <span class="card-head">
-              <span class="title">
-                {{ a.title }}
-                <ArrowUpRight aria-hidden="true" class="ext" />
-              </span>
-              <span class="meta muted">{{ a.author }}</span>
+      <ul class="list reading">
+        <li v-for="a in readingFirst" :key="a.href">
+          <a :href="a.href" class="row read" rel="noopener" data-spot>
+            <span class="title">
+              {{ a.title }}
+              <ArrowUpRight aria-hidden="true" class="ext" />
             </span>
-            <span class="muted">{{ a.note }}</span>
+            <span class="by">{{ a.author }}</span>
+            <span class="muted note-line">{{ a.note }}</span>
           </a>
         </li>
       </ul>
+      <Collapsible v-if="readingMore.length" v-model:open="showMoreReading">
+        <CollapsibleContent>
+          <ul class="list reading">
+            <li v-for="a in readingMore" :key="a.href">
+              <a :href="a.href" class="row read" rel="noopener">
+                <span class="title">
+                  {{ a.title }}
+                  <ArrowUpRight aria-hidden="true" class="ext" />
+                </span>
+                <span class="by">{{ a.author }}</span>
+                <span class="muted note-line">{{ a.note }}</span>
+              </a>
+            </li>
+          </ul>
+        </CollapsibleContent>
+        <CollapsibleTrigger as-child>
+          <Button variant="ghost" size="sm" class="toggle">
+            {{ showMoreReading ? 'Show fewer' : `Show ${readingMore.length} more` }}
+            <ChevronDown aria-hidden="true" class="chev" :class="{ up: showMoreReading }" />
+          </Button>
+        </CollapsibleTrigger>
+      </Collapsible>
     </section>
 
     <section aria-labelledby="contact" class="section col prose">
@@ -427,6 +451,20 @@ h2 {
 .title {
   font-size: var(--text-md);
   font-weight: 500;
+}
+
+.row.read {
+  gap: 2px;
+  padding-block: 12px;
+}
+
+.by {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+
+.note-line {
+  margin-top: 4px;
 }
 
 .ext {
