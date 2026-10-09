@@ -96,10 +96,14 @@ const short = (org: string) => org.includes('Victory+ · Kidoodle.TV') ? 'APMC' 
         calls for, from payment and privacy rules to Flutter for a live broadcast.
       </p>
       <p>
-        AI is part of how I work every day, from comparing approaches before I build to automating
-        the repetitive parts of the job.
+        Most recently I built the web apps for Victory+ and Kidoodle.TV at APMC, where Victory+
+        carried 200,000+ concurrent viewers through the 2025 playoffs. I also led the Nuxt 3 to 4
+        migration and wrote the release and QA process the team shipped with.
       </p>
-      <p>Most recently I built the web apps for Victory+ and Kidoodle.TV at APMC.</p>
+      <p>
+        AI is part of how I build every day: I run Claude Code against Jira, GitHub and a real
+        browser, and it powered the QA sign-off script our releases ran through.
+      </p>
       <p class="products muted">
         Products I’ve worked on: Victory+, Kidoodle.TV, Tugboat Logic (now OneTrust) and Kettl.
       </p>

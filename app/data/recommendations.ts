@@ -21,6 +21,13 @@ export const recommendations: Recommendation[] = [
       'As a developer, she was never afraid of challenges, new technologies, or communicating with other teams. She was always responsive, proactive, and willing to take ownership.',
   },
   {
+    name: 'Luis Marcano',
+    title: 'Staff Software Engineer',
+    relation: 'Tugboat Logic',
+    quote:
+      'An outstanding and creative professional capable of working out complex problems with little to no guidance and delivering stellar results in the process.',
+  },
+  {
     name: 'Pierre Chamberlain',
     title: 'Fullstack Developer',
     relation: 'APMC',
@@ -33,12 +40,5 @@ export const recommendations: Recommendation[] = [
     relation: 'APMC',
     quote:
       'She genuinely had my back. She was always willing to help, step in when needed, and make things easier for the people around her.',
-  },
-  {
-    name: 'Luis Marcano',
-    title: 'Staff Software Engineer',
-    relation: 'Tugboat Logic',
-    quote:
-      'An outstanding and creative professional capable of working out complex problems with little to no guidance and delivering stellar results in the process.',
   },
 ]
