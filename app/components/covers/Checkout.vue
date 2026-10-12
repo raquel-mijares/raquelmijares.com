@@ -297,8 +297,6 @@
   font-size: 0.9em;
 }
 
-
-
 .line .mono {
   color: #5b5b64;
   font-size: 0.85em;

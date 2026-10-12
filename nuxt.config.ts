@@ -2,23 +2,37 @@ import tailwindcss from '@tailwindcss/vite'
 import { themeBootScript, themeColor } from './app/data/theme'
 
 export default defineNuxtConfig({
-  compatibilityDate: '2026-10-01',
+  modules: ['shadcn-nuxt', '@nuxt/eslint'],
+  $production: {
+    routeRules: {
+      '/**': {
+        headers: {
+          'X-Content-Type-Options': 'nosniff',
+          'X-Frame-Options': 'DENY',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+          'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+          'Content-Security-Policy': [
+            'default-src \'self\'',
+            'script-src \'self\' \'unsafe-inline\'',
+            'style-src \'self\' \'unsafe-inline\'',
+            'img-src \'self\' data:',
+            'font-src \'self\'',
+            'connect-src \'self\'',
+            'object-src \'none\'',
+            'base-uri \'self\'',
+            'form-action \'self\'',
+            'frame-ancestors \'none\'',
+            'upgrade-insecure-requests',
+          ].join('; '),
+        },
+      },
+      '/fonts/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
+      '/images/**': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } },
+      '/og.jpg': { headers: { 'Cache-Control': 'public, max-age=86400' } },
+      '/apple-touch-icon.png': { headers: { 'Cache-Control': 'public, max-age=604800' } },
+    },
+  },
   devtools: { enabled: false },
-  experimental: {
-    viewTransition: true,
-  },
-  modules: ['shadcn-nuxt'],
-  shadcn: {
-    prefix: '',
-    componentDir: './app/components/ui',
-  },
-  css: ['~/assets/main.css'],
-  vite: {
-    plugins: [tailwindcss()],
-  },
-  features: {
-    inlineStyles: true,
-  },
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
@@ -55,45 +69,36 @@ export default defineNuxtConfig({
       ],
     },
   },
-  $production: {
-    routeRules: {
-      '/**': {
-        headers: {
-          'X-Content-Type-Options': 'nosniff',
-          'X-Frame-Options': 'DENY',
-          'Referrer-Policy': 'strict-origin-when-cross-origin',
-          'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
-          'Content-Security-Policy': [
-            "default-src 'self'",
-            "script-src 'self' 'unsafe-inline'",
-            "style-src 'self' 'unsafe-inline'",
-            "img-src 'self' data:",
-            "font-src 'self'",
-            "connect-src 'self'",
-            "object-src 'none'",
-            "base-uri 'self'",
-            "form-action 'self'",
-            "frame-ancestors 'none'",
-            'upgrade-insecure-requests',
-          ].join('; '),
-        },
-      },
-      '/fonts/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
-      '/images/**': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } },
-      '/og.jpg': { headers: { 'Cache-Control': 'public, max-age=86400' } },
-      '/apple-touch-icon.png': { headers: { 'Cache-Control': 'public, max-age=604800' } },
-    },
-  },
+  css: ['~/assets/main.css'],
   runtimeConfig: {
     public: {
       siteUrl: 'https://raquelmijares.com',
     },
   },
+  features: {
+    inlineStyles: true,
+  },
+  experimental: {
+    viewTransition: true,
+  },
+  compatibilityDate: '2026-10-01',
   nitro: {
     prerender: {
       crawlLinks: true,
       routes: ['/', '/sitemap.xml'],
       ignore: ['/og'],
     },
+  },
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
+  shadcn: {
+    prefix: '',
+    componentDir: './app/components/ui',
   },
 })

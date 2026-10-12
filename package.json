@@ -6,7 +6,11 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -22,10 +26,13 @@
     "vue-router": "^5.4.0"
   },
   "devDependencies": {
+    "@nuxt/eslint": "^1.17.0",
     "@tailwindcss/vite": "^4.3.3",
+    "eslint": "^10.12.0",
     "shadcn-nuxt": "^2.8.2",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.3.13"
   },
   "overrides": {
     "@vercel/analytics": {

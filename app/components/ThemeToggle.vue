@@ -20,13 +20,28 @@ const sync = () => {
 
 let observer: MutationObserver | undefined
 
-onMounted(() => {
-  sync()
+function readStored(): ThemeName | undefined {
   try {
     const stored = localStorage.getItem(THEME_STORAGE_KEY)
-    if (stored === 'light' || stored === 'dark') chosen.value = stored
+    return stored === 'light' || stored === 'dark' ? stored : undefined
   }
-  catch {}
+  catch {
+    return undefined
+  }
+}
+
+function store(theme: ThemeName) {
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme)
+  }
+  catch {
+    return
+  }
+}
+
+onMounted(() => {
+  sync()
+  chosen.value = readStored()
   observer = new MutationObserver(sync)
   observer.observe(root(), { attributes: true, attributeFilter: ['data-theme'] })
 })
@@ -37,10 +52,7 @@ function toggle() {
   const theme: ThemeName = dark.value ? 'light' : 'dark'
   root().dataset.theme = theme
   chosen.value = theme
-  try {
-    localStorage.setItem(THEME_STORAGE_KEY, theme)
-  }
-  catch {}
+  store(theme)
 }
 </script>
 

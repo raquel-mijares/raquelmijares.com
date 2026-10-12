@@ -1,22 +1,5 @@
 <script setup lang="ts">
-const lines = [
-  '<span class="tg">&lt;script</span> <span class="p">setup</span> <span class="p">lang</span>=<span class="s">"ts"</span><span class="tg">&gt;</span>',
-  '<span class="f">definePageMeta</span>({',
-  '  <span class="p">auth</span>: <span class="s">\'registered\'</span>,',
-  '  <span class="p">layout</span>: <span class="s">\'account\'</span>,',
-  '})',
-  '',
-  '<span class="k">const</span> { <span class="p">user</span> } = <span class="f">useAuth</span>()',
-  '<span class="tg">&lt;/script&gt;</span>',
-  '',
-  '<span class="tg">&lt;template&gt;</span>',
-  '  <span class="tg">&lt;AccountLayout&gt;</span>',
-  '    <span class="tg">&lt;ProfileCard</span> <span class="p">:user</span>=<span class="s">"user"</span> <span class="tg">/&gt;</span>',
-  '    <span class="tg">&lt;SubscriptionCard</span> <span class="tg">/&gt;</span>',
-  '    <span class="tg">&lt;DevicesList</span> <span class="tg">/&gt;</span>',
-  '  <span class="tg">&lt;/AccountLayout&gt;</span>',
-  '<span class="tg">&lt;/template&gt;</span>',
-]
+import { accountPageCode as lines } from '~/data/code-samples'
 </script>
 
 <template>
@@ -26,7 +9,12 @@ const lines = [
       <div class="ed mono">
         <div v-for="(l, i) in lines" :key="i" class="ln" :class="{ hl: i === 2 }">
           <span class="no">{{ i + 1 }}</span>
-          <span v-html="l" />
+          <span>
+            <template v-for="([cls, text], j) in l" :key="j">
+              <span v-if="cls" :class="cls">{{ text }}</span>
+              <template v-else>{{ text }}</template>
+            </template>
+          </span>
         </div>
       </div>
     </div>
