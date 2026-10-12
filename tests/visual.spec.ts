@@ -3,7 +3,7 @@ import { settle } from './helpers'
 
 test.skip(!process.env.CI && !process.env.VISUAL, 'Baselines are rendered on Linux in CI.')
 
-const clock = (page: import('@playwright/test').Page) => [page.locator('.t')]
+const clock = (page: import('@playwright/test').Page) => [page.locator('section[aria-labelledby="contact"] .t')]
 
 for (const [name, width, colorScheme] of [
   ['home-desktop-light', 1440, 'light'],
