@@ -206,3 +206,10 @@ export const contrast = (a: string, b: string) => {
 }
 
 export const grade = (ratio: number) => (ratio >= 7 ? 'AAA' : ratio >= 4.5 ? 'AA' : ratio >= 3 ? 'AA large' : 'Fail')
+
+export const deliveryFlow = [
+  { title: 'Designed in Figma', text: 'I match the design team’s Figma specs, down to spacing and line height.' },
+  { title: 'Design tokens', text: 'Three layers: a shared base, each brand’s colors, then component tokens like the dialog’s.' },
+  { title: 'Storybook', text: 'At Tugboat Logic I grew the component library, with every component in every state.' },
+  { title: 'Shipped', text: 'Three modal systems became one dialog, used by both Victory+ and Kidoodle.TV.' },
+]

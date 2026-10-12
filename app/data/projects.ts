@@ -274,3 +274,9 @@ export const projects: Project[] = [
     stack: ['React', 'TypeScript', 'Redux', 'Storybook', 'Cypress'],
   },
 ]
+
+export const workProjects = projects.filter(p => p.category !== 'open-source')
+export const openSourceProjects = projects.filter(p => p.category === 'open-source')
+
+export const shortOrg = (org: string) =>
+  org.includes('Victory+ · Kidoodle.TV') ? 'APMC' : org.split(' · ')[0]!.replace(' (acquired by OneTrust)', '')

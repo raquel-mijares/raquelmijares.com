@@ -1,0 +1,116 @@
+.home .section {
+  margin-top: var(--space-section);
+}
+
+.home .breakout,
+.home .breakout + .section {
+  margin-top: calc(var(--space-section) + var(--space-block));
+}
+
+.home h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.home :where(.section) > .head {
+  display: grid;
+  gap: var(--space-related);
+  margin-bottom: var(--space-block);
+}
+
+.home .breakout > .head {
+  margin-bottom: calc(var(--space-block) + var(--space-related));
+}
+
+.home :where(.section) > .head p {
+  margin: 0;
+}
+
+.home .prose p {
+  margin: 0;
+}
+
+.home .prose > .head {
+  margin-bottom: var(--space-item);
+}
+
+.home .prose p + p {
+  margin-top: var(--space-item);
+}
+
+.home .prose .products {
+  margin-top: var(--space-block);
+  font-size: var(--text-sm);
+}
+
+.home .card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-item);
+}
+
+.home :where(.card-head, .row, .flow li) > .title {
+  font-size: var(--text-md);
+  font-weight: 500;
+}
+
+.home :where(.card-head) > .meta {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.home .list {
+  list-style: none;
+  margin: 0 calc(var(--space-item) * -1);
+  padding: 0;
+}
+
+.home :where(.list > li) > .row {
+  display: grid;
+  gap: var(--space-pair);
+  padding: var(--space-item);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background-color 0.15s;
+}
+
+@media (hover: hover) {
+  .home :where(.list > li) > .row:hover {
+    background: var(--hover);
+  }
+}
+
+.home :where(.list > li) > .row.is-spot,
+.home :where(.list > li) > .row:active {
+  background: var(--hover);
+}
+
+.home .quotes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-block);
+}
+
+.home .quotes.more {
+  margin-top: var(--space-block);
+}
+
+.home .after {
+  margin: var(--space-block) 0 0;
+}
+
+.home .after + .after {
+  margin-top: var(--space-item);
+}
+
+@media (max-width: 420px) {
+  .home .card-head {
+    flex-direction: column;
+    gap: 0;
+  }
+}
