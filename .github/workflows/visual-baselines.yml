@@ -2,6 +2,8 @@ name: visual-baselines
 
 on:
   workflow_dispatch:
+  push:
+    branches: ['visual/**']
 
 jobs:
   update:
