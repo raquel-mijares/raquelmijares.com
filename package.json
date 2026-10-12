@@ -10,7 +10,9 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:visual:update": "VISUAL=1 playwright test visual --update-snapshots"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -27,6 +29,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.17.0",
+    "@playwright/test": "^1.64.0",
     "@tailwindcss/vite": "^4.3.3",
     "eslint": "^10.12.0",
     "shadcn-nuxt": "^2.8.2",
