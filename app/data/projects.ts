@@ -213,7 +213,7 @@ export const projects: Project[] = [
       'An accessible consent dialog, checked with axe.',
     ],
     outcome: [
-      '29 unit tests and 18 end-to-end specs, run in CI with a dependency audit.',
+      '38 unit tests and 18 end-to-end specs, run in CI with a dependency audit.',
       'Six engineering notes: consent, analytics without PII, children’s privacy, SOC 2 evidence, event deduplication and consent UI accessibility.',
     ],
     stack: ['TypeScript', 'Vite', 'Vitest', 'Playwright', 'axe-core', 'GitHub Actions'],
