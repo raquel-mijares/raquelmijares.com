@@ -1,32 +1,44 @@
 <script setup lang="ts">
 import { Moon, Sun } from 'lucide-vue-next'
+import { THEME_STORAGE_KEY, themeColor, type ThemeName } from '~/data/theme'
 
 const dark = ref<boolean>()
-const chosen = ref<'light' | 'dark'>()
+const chosen = ref<ThemeName>()
 
 useHead({
   meta: computed(() => {
     if (!chosen.value) return []
-    const content = chosen.value === 'dark' ? '#0f0f0f' : '#ffffff'
-    return ['light', 'dark'].map(scheme => ({ name: 'theme-color', media: `(prefers-color-scheme: ${scheme})`, content }))
+    const content = themeColor[chosen.value]
+    return (['light', 'dark'] as const).map(scheme => ({ name: 'theme-color', media: `(prefers-color-scheme: ${scheme})`, content }))
   }),
 })
 
-const systemDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
+const root = () => document.documentElement
+const sync = () => {
+  dark.value = root().dataset.theme === 'dark'
+}
+
+let observer: MutationObserver | undefined
 
 onMounted(() => {
-  const set = document.documentElement.dataset.theme
-  dark.value = set ? set === 'dark' : systemDark()
-  if (set === 'light' || set === 'dark') chosen.value = set
+  sync()
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY)
+    if (stored === 'light' || stored === 'dark') chosen.value = stored
+  }
+  catch {}
+  observer = new MutationObserver(sync)
+  observer.observe(root(), { attributes: true, attributeFilter: ['data-theme'] })
 })
 
+onBeforeUnmount(() => observer?.disconnect())
+
 function toggle() {
-  dark.value = !dark.value
-  const theme = dark.value ? 'dark' : 'light'
-  document.documentElement.dataset.theme = theme
+  const theme: ThemeName = dark.value ? 'light' : 'dark'
+  root().dataset.theme = theme
   chosen.value = theme
   try {
-    localStorage.setItem('theme', theme)
+    localStorage.setItem(THEME_STORAGE_KEY, theme)
   }
   catch {}
 }

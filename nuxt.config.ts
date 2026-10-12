@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite'
+import { themeBootScript, themeColor } from './app/data/theme'
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-01',
@@ -29,8 +30,8 @@ export default defineNuxtConfig({
           content:
             'Senior software developer in Calgary: payments, privacy and the screens people use every day.',
         },
-        { name: 'theme-color', content: '#ffffff', media: '(prefers-color-scheme: light)' },
-        { name: 'theme-color', content: '#0f0f0f', media: '(prefers-color-scheme: dark)' },
+        { name: 'theme-color', content: themeColor.light, media: '(prefers-color-scheme: light)' },
+        { name: 'theme-color', content: themeColor.dark, media: '(prefers-color-scheme: dark)' },
         { property: 'og:title', content: 'Raquel Mijares' },
         { property: 'og:description', content: 'Senior software developer in Calgary: payments, privacy and the screens people use every day.' },
         { property: 'og:type', content: 'website' },
@@ -43,7 +44,7 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          innerHTML: 'try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}',
+          innerHTML: themeBootScript,
           tagPosition: 'head',
         },
       ],

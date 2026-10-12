@@ -132,24 +132,6 @@
   color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg: #0f0f0f;
-    --ink: #ededed;
-    --ink-2: #a3a3a3;
-    --line: #242424;
-    --hover: #181818;
-    --accent: #f08a63;
-    --ok: #3ccf7a;
-    --d-bg: #151515;
-    --d-ink: #ededed;
-    --d-muted: #a8a8a8;
-    --d-line: #333333;
-    --d-node: #1c1c1c;
-    color-scheme: dark;
-  }
-}
-
 @media (min-width: 1800px) {
   :root {
     --measure: 680px;
@@ -532,24 +514,6 @@
 
 :root[data-theme='dark'] .cover.dark {
   filter: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .theme-toggle .sun {
-    display: block;
-  }
-
-  :root:not([data-theme='light']) .theme-toggle .moon {
-    display: none;
-  }
-
-  :root:not([data-theme='light']) .cover {
-    filter: saturate(0.9) brightness(0.88);
-  }
-
-  :root:not([data-theme='light']) .cover.dark {
-    filter: none;
-  }
 }
 
 .vt-name {
