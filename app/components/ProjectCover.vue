@@ -82,7 +82,7 @@ const style = computed(() => {
   position: absolute;
   inset: 0;
   font-size: 1.62cqw;
-  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
   transform-origin: 70% 70%;
 }
 

@@ -15,8 +15,8 @@ import { reading } from '~/data/reading'
       :item-key="a => a.href"
       list-class="list reading"
     >
-      <template #default="{ item: a, extra }">
-        <a :href="a.href" class="row read" rel="noopener" :data-spot="extra ? undefined : ''">
+      <template #default="{ item: a }">
+        <a :href="a.href" class="row read" rel="noopener">
           <span class="title">
             {{ a.title }}
             <ArrowUpRight aria-hidden="true" class="ext" />
@@ -54,8 +54,9 @@ import { reading } from '~/data/reading'
   transition: transform 0.15s, color 0.15s;
 }
 
-.home:not([data-input='scroll']) .row:hover .ext,
-.row.is-spot .ext {
+.home[data-input='mouse'] .row:hover .ext,
+.row:focus-visible .ext,
+.row:active .ext {
   color: var(--ink);
   transform: translate(1px, -1px);
 }

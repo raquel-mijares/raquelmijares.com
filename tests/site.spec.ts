@@ -46,38 +46,47 @@ test('design system tabs work with the keyboard', async ({ page }) => {
   await expect(page.getByRole('tabpanel')).toHaveAttribute('aria-labelledby', 'ds-tab-motion')
 })
 
-test('the spotlight follows scrolling and yields to the mouse', async ({ page }) => {
-  await page.goto('/')
-  const home = page.locator('.home')
-  const card = page.locator('.card').first()
-  await expect(async () => {
-    await page.mouse.wheel(0, 4)
-    await expect(home).toHaveAttribute('data-input', 'scroll', { timeout: 500 })
-  }).toPass()
-  await card.evaluate(el => el.scrollIntoView({ block: 'center' }))
-  await expect(card).toHaveClass(/is-spot/)
-  await page.mouse.move(10, 10)
-  await page.mouse.move(40, 40)
-  await expect(home).toHaveAttribute('data-input', 'pointer')
-  await expect(page.locator('.is-spot')).toHaveCount(0)
-  await page.mouse.wheel(0, 4)
-  await expect(home).toHaveAttribute('data-input', 'scroll')
-  await expect(card).toHaveClass(/is-spot/)
+const highlighted = (page: import('@playwright/test').Page) => page.evaluate(() => {
+  const lit = (el: Element) => getComputedStyle(el).backgroundColor !== 'rgba(0, 0, 0, 0)'
+  const zoomed = (el: Element) => !['none', 'matrix(1, 0, 0, 1, 0, 0)'].includes(getComputedStyle(el).transform)
+  return [...document.querySelectorAll('.home .list .row')].filter(lit).length
+    + [...document.querySelectorAll('.home .card .stage')].filter(zoomed).length
 })
 
-test('the spotlight marks one row at a time', async ({ page }) => {
+test('rows and cards react to the mouse and to nothing else', async ({ page }) => {
   await page.goto('/')
   const home = page.locator('.home')
-  await expect(async () => {
-    await page.mouse.wheel(0, 4)
-    await expect(home).toHaveAttribute('data-input', 'scroll', { timeout: 500 })
-  }).toPass()
-  const reading = page.locator('section[aria-labelledby="reading"]')
-  await reading.locator('.row.read').nth(1).evaluate(el => el.scrollIntoView({ block: 'center' }))
-  await expect(reading.locator('.row.is-spot')).toHaveCount(1)
-  await expect(reading.locator('.row.read').nth(1)).toHaveClass(/is-spot/)
-  await page.locator('.card').first().evaluate(el => el.scrollIntoView({ block: 'center' }))
-  await expect(page.locator('.card.is-spot')).toHaveCount(2)
+  await expect(home).toHaveAttribute('data-input', 'mouse')
+  await page.mouse.move(4, 4)
+  for (let i = 0; i < 12; i++) {
+    await page.mouse.wheel(0, 500)
+    expect(await highlighted(page)).toBe(0)
+  }
+  const row = page.locator('section[aria-labelledby="reading"] .row.read').nth(1)
+  await row.hover()
+  await expect(row).toHaveCSS('background-color', /rgb\(/)
+  await expect.poll(() => highlighted(page)).toBe(1)
+  await page.mouse.move(4, 4)
+  await expect.poll(() => highlighted(page)).toBe(0)
+})
+
+test.describe('touch', () => {
+  test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } })
+
+  test('nothing stays highlighted after scrolling or tapping', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.locator('.home')).toHaveAttribute('data-input', 'touch')
+    const total = await page.evaluate(() => document.body.scrollHeight)
+    for (let y = 0; y < total; y += 400) {
+      await page.evaluate(top => window.scrollTo(0, top), y)
+      expect(await highlighted(page)).toBe(0)
+    }
+    const heading = page.getByRole('heading', { level: 2, name: 'Reading' })
+    await heading.scrollIntoViewIfNeeded()
+    await heading.tap()
+    await expect(page.locator('.home')).toHaveAttribute('data-input', 'touch')
+    expect(await highlighted(page)).toBe(0)
+  })
 })
 
 test('case studies link back to home', async ({ page }) => {
