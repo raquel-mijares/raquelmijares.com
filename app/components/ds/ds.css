@@ -401,8 +401,10 @@
 .ds .d-stage {
   position: relative;
   width: min(100%, 560px);
+  min-width: 0;
   aspect-ratio: 16 / 10;
-  overflow: hidden;
+  overflow: clip;
+  clip-path: inset(0 round 12px);
   border-radius: 12px;
   display: grid;
   place-items: center;
