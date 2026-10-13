@@ -74,18 +74,20 @@
   padding: var(--space-item);
   border-radius: var(--radius);
   text-decoration: none;
-  transition: background-color 0.15s;
+  transition: background-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-@media (hover: hover) {
-  .home:not([data-input='scroll']) :where(.list > li) > .row:hover {
-    background: var(--hover);
-  }
-}
-
-.home :where(.list > li) > .row.is-spot,
+.home[data-input='mouse'] :where(.list > li) > .row:hover,
+.home :where(.list > li) > .row:focus-visible,
 .home :where(.list > li) > .row:active {
   background: var(--hover);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home:not([data-input]) :where(.list > li) > .row:hover {
+    background: var(--hover);
+  }
 }
 
 .home .quotes {

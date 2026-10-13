@@ -7,7 +7,7 @@ import { openSourceProjects } from '~/data/projects'
     <h2 id="oss" class="head">Open source</h2>
     <ul class="list">
       <li v-for="p in openSourceProjects" :key="p.slug">
-        <NuxtLink :to="`/work/${p.slug}`" class="row" data-spot>
+        <NuxtLink :to="`/work/${p.slug}`" class="row">
           <span class="card-head">
             <span class="title">{{ p.title }}</span>
             <span class="meta muted">GitHub, {{ p.years }}</span>

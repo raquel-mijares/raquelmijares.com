@@ -2,7 +2,7 @@
 import '~/components/home/home.css'
 
 const home = ref<HTMLElement>()
-useSpotlight(home)
+useInputMode(home)
 
 const { siteUrl } = useRuntimeConfig().public
 
