@@ -65,6 +65,21 @@ test('the spotlight follows scrolling and yields to the mouse', async ({ page })
   await expect(card).toHaveClass(/is-spot/)
 })
 
+test('the spotlight marks one row at a time', async ({ page }) => {
+  await page.goto('/')
+  const home = page.locator('.home')
+  await expect(async () => {
+    await page.mouse.wheel(0, 4)
+    await expect(home).toHaveAttribute('data-input', 'scroll', { timeout: 500 })
+  }).toPass()
+  const reading = page.locator('section[aria-labelledby="reading"]')
+  await reading.locator('.row.read').nth(1).evaluate(el => el.scrollIntoView({ block: 'center' }))
+  await expect(reading.locator('.row.is-spot')).toHaveCount(1)
+  await expect(reading.locator('.row.read').nth(1)).toHaveClass(/is-spot/)
+  await page.locator('.card').first().evaluate(el => el.scrollIntoView({ block: 'center' }))
+  await expect(page.locator('.card.is-spot')).toHaveCount(2)
+})
+
 test('case studies link back to home', async ({ page }) => {
   await page.goto('/')
   await page.locator('.card').first().click()
