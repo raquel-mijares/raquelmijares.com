@@ -44,7 +44,7 @@ import { shortOrg, workProjects } from '~/data/projects'
 }
 
 @media (hover: hover) {
-  .card:hover :deep(.stage) {
+  .home:not([data-input='scroll']) .card:hover :deep(.stage) {
     transform: scale(1.025);
   }
 }

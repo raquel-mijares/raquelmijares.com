@@ -54,7 +54,7 @@ import { reading } from '~/data/reading'
   transition: transform 0.15s, color 0.15s;
 }
 
-.row:hover .ext,
+.home:not([data-input='scroll']) .row:hover .ext,
 .row.is-spot .ext {
   color: var(--ink);
   transform: translate(1px, -1px);

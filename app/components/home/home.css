@@ -78,7 +78,7 @@
 }
 
 @media (hover: hover) {
-  .home :where(.list > li) > .row:hover {
+  .home:not([data-input='scroll']) :where(.list > li) > .row:hover {
     background: var(--hover);
   }
 }

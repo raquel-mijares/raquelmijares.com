@@ -46,6 +46,25 @@ test('design system tabs work with the keyboard', async ({ page }) => {
   await expect(page.getByRole('tabpanel')).toHaveAttribute('aria-labelledby', 'ds-tab-motion')
 })
 
+test('the spotlight follows scrolling and yields to the mouse', async ({ page }) => {
+  await page.goto('/')
+  const home = page.locator('.home')
+  const card = page.locator('.card').first()
+  await expect(async () => {
+    await page.mouse.wheel(0, 4)
+    await expect(home).toHaveAttribute('data-input', 'scroll', { timeout: 500 })
+  }).toPass()
+  await card.evaluate(el => el.scrollIntoView({ block: 'center' }))
+  await expect(card).toHaveClass(/is-spot/)
+  await page.mouse.move(10, 10)
+  await page.mouse.move(40, 40)
+  await expect(home).toHaveAttribute('data-input', 'pointer')
+  await expect(page.locator('.is-spot')).toHaveCount(0)
+  await page.mouse.wheel(0, 4)
+  await expect(home).toHaveAttribute('data-input', 'scroll')
+  await expect(card).toHaveClass(/is-spot/)
+})
+
 test('case studies link back to home', async ({ page }) => {
   await page.goto('/')
   await page.locator('.card').first().click()
