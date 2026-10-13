@@ -11,6 +11,14 @@ useHead({
     type: 'application/ld+json',
     innerHTML: JSON.stringify({
       '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      'name': 'Raquel Mijares',
+      'url': siteUrl,
+    }),
+  }, {
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
       '@type': 'Person',
       'name': 'Raquel Mijares',
       'jobTitle': 'Senior Software Developer',
