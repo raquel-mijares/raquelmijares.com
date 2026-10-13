@@ -401,14 +401,19 @@
 .ds .d-stage {
   position: relative;
   width: min(100%, 560px);
-  min-width: 0;
-  aspect-ratio: 16 / 10;
-  overflow: clip;
+  overflow: hidden;
   clip-path: inset(0 round 12px);
   border-radius: 12px;
   display: grid;
   place-items: center;
   padding: 16px;
+}
+
+.ds .d-stage::before {
+  content: '';
+  grid-area: 1 / 1;
+  width: 0;
+  padding-bottom: calc(62.5% - 12px);
 }
 
 .ds .d-backdrop {
@@ -428,6 +433,7 @@
 
 .ds .d-box {
   position: relative;
+  grid-area: 1 / 1;
   display: grid;
   gap: 8px;
   width: min(100%, 360px);
