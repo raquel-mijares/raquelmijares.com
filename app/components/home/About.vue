@@ -8,13 +8,13 @@
       calls for, from payment and privacy rules to Flutter for a live broadcast.
     </p>
     <p>
-      Most recently I built the web apps for Victory+ and Kidoodle.TV at APMC, where Victory+
-      carried 200,000+ concurrent viewers through the 2025 playoffs. I also led the Nuxt 3 to 4
-      migration and wrote the release and QA process the team shipped with.
+      Most recently I built the web apps for Victory+ and Kidoodle.TV at APMC: the subscription
+      checkout, consent for analytics and ads, and the dialog system both brands shared. I also
+      wrote the release guide and QA'd our releases.
     </p>
     <p>
       AI is part of how I build every day: I run Claude Code against Jira, GitHub and a real
-      browser, and it powered the QA sign-off script our releases ran through.
+      browser, and I review every diff myself.
     </p>
     <p class="products muted">
       Products I’ve worked on: Victory+, Kidoodle.TV, Tugboat Logic (now OneTrust) and Kettl.
