@@ -278,5 +278,21 @@ export const projects: Project[] = [
 export const workProjects = projects.filter(p => p.category !== 'open-source')
 export const openSourceProjects = projects.filter(p => p.category === 'open-source')
 
+export interface OpenSourceRepo {
+  title: string
+  years: string
+  summary: string
+  href: string
+}
+
+export const openSourceRepos: OpenSourceRepo[] = [
+  {
+    title: 'theme-contrast',
+    years: '2026',
+    summary: 'Work in progress: a CLI that reads DTCG design tokens and checks WCAG contrast for every brand and light or dark theme.',
+    href: 'https://github.com/raquel-mijares/theme-contrast',
+  },
+]
+
 export const shortOrg = (org: string) =>
   org.includes('Victory+ · Kidoodle.TV') ? 'APMC' : org.split(' · ')[0]!.replace(' (acquired by OneTrust)', '')
