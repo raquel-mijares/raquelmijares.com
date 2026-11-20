@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { openSourceProjects } from '~/data/projects'
+import { openSourceProjects, openSourceRepos } from '~/data/projects'
 </script>
 
 <template>
@@ -14,6 +14,15 @@ import { openSourceProjects } from '~/data/projects'
           </span>
           <span class="muted">{{ p.summary }}</span>
         </NuxtLink>
+      </li>
+      <li v-for="r in openSourceRepos" :key="r.href">
+        <a :href="r.href" class="row" rel="noopener">
+          <span class="card-head">
+            <span class="title">{{ r.title }}</span>
+            <span class="meta muted">GitHub, {{ r.years }}</span>
+          </span>
+          <span class="muted">{{ r.summary }}</span>
+        </a>
       </li>
     </ul>
   </section>
