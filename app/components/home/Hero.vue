@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowUpRight, Mail } from 'lucide-vue-next'
+import { ArrowDown, ArrowUpRight, Mail } from 'lucide-vue-next'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 </script>
@@ -20,6 +20,9 @@ import { Button } from '@/components/ui/button'
       I build the parts of a product that have to be right: payments, privacy, and the screens
       people use every day.
     </p>
+    <p class="why muted">
+      I care about products that treat people fairly, especially with their money and their data.
+    </p>
     <div class="ctas">
       <Button as="a" href="mailto:raquelmjrs@gmail.com">
         <Mail aria-hidden="true" />
@@ -32,6 +35,10 @@ import { Button } from '@/components/ui/button'
       <Button as="a" variant="ghost" href="https://github.com/raquel-mijares" rel="noopener">
         GitHub
         <ArrowUpRight aria-hidden="true" />
+      </Button>
+      <Button as="a" variant="ghost" href="#work">
+        See my work
+        <ArrowDown aria-hidden="true" />
       </Button>
     </div>
   </header>
@@ -50,6 +57,13 @@ import { Button } from '@/components/ui/button'
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.why {
+  margin: calc(var(--space-item) - var(--space-block)) 0 0;
+  font-size: var(--text-lg);
+  line-height: 1.4;
   text-wrap: balance;
 }
 
